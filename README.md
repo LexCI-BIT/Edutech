@@ -1,16 +1,43 @@
-# React + Vite
+# Edutech Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive, and visually stunning educational technology platform built with React, Vite, and Tailwind CSS. The platform features an immersive dark-mode UI with sleek glassmorphism effects and modern aesthetics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Modern Aesthetics:** A premium dark-mode interface with vibrant gradients, custom typography, and hover animations.
+- **Responsive Design:** Fully responsive layouts that look great on desktops, tablets, and mobile devices.
+- **Course Catalog:** Dedicated pages to showcase trending programs such as Full Stack Development, Data Science, AI & Machine Learning, and Cloud Computing.
+- **Authentication Pages:** Beautifully designed Sign In and Sign Up screens with integrated visuals.
+- **Dynamic Routing:** Multi-page application structure managed by React Router.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18**
+- **Vite** (for blazingly fast builds)
+- **Tailwind CSS** (for utility-first styling)
+- **Framer Motion** (for smooth scroll reveals and micro-animations)
+- **Lucide React** (for modern scalable icons)
+- **React Router DOM** (for seamless navigation)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To run the project locally:
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Design Highlights
+
+- **Custom Gradient Effects:** Intricate background blurs and text gradients create a deep, futuristic learning environment.
+- **Smooth Animations:** Integrated `framer-motion` for buttery smooth reveal effects and interactive elements.
