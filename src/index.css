@@ -255,3 +255,22 @@
   border-color: var(--color-primary);
   box-shadow: 0 0 40px rgba(124, 58, 237, 0.2);
 }
+
+/* Marquee scroll */
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.mask-edges {
+  -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+  mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+}
+

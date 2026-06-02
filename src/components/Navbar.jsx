@@ -43,7 +43,7 @@ export default function Navbar({ onContactClick }) {
           <Link to="/" className="flex items-center gap-2 group">
             <span className="w-3 h-3 rounded-full bg-green-dot group-hover:animate-pulse transition-all" />
             <span className="text-lg lg:text-xl font-bold text-text-primary tracking-tight">
-              XXX Edutech
+              ApexSchool
             </span>
           </Link>
 

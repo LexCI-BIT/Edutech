@@ -39,7 +39,7 @@ export default function Footer() {
           <ScrollReveal variant="fadeUp" className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <span className="w-3 h-3 rounded-full bg-green-dot" />
-              <span className="text-xl font-bold text-text-primary">XXX Edutech</span>
+              <span className="text-xl font-bold text-text-primary">ApexSchool</span>
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed mb-6 max-w-sm">
               Accelerate your career with world-class programs, expert mentorship, 
@@ -105,7 +105,7 @@ export default function Footer() {
         <ScrollReveal variant="fadeIn" delay={0.4}>
           <div className="mt-8 pt-6 border-t border-border-purple text-center">
             <p className="text-xs text-text-muted">
-              © {new Date().getFullYear()} XXX Edutech. All rights reserved.
+              © {new Date().getFullYear()} ApexSchool. All rights reserved.
             </p>
           </div>
         </ScrollReveal>
