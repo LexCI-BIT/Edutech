@@ -768,7 +768,7 @@ export default function Home({ onContactClick }) {
                 {courses.filter(c => c.categoryId === activeCategory).length > 0 ? (
                   courses.filter(c => c.categoryId === activeCategory).map((course) => (
                     <StaggerItem key={course.id}>
-                      <div className="bg-white rounded-2xl overflow-hidden flex flex-col h-full hover:shadow-xl transition-shadow duration-300">
+                      <Link to={`/course/${course.id}`} className="bg-white rounded-2xl overflow-hidden flex flex-col h-full hover:shadow-xl transition-shadow duration-300 group/card block">
                         {/* Image Area */}
                         <div className="h-48 relative overflow-hidden group">
                           <img 
@@ -782,7 +782,7 @@ export default function Home({ onContactClick }) {
                             </div>
                           )}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end p-5">
-                            <h3 className="text-xl font-bold text-white leading-tight">
+                            <h3 className="text-xl font-bold text-white leading-tight group-hover/card:text-primary-light transition-colors">
                               {course.title}
                             </h3>
                           </div>
@@ -816,11 +816,11 @@ export default function Home({ onContactClick }) {
                             </div>
                           </div>
 
-                          <button className="text-primary font-bold text-sm flex items-center gap-1.5 hover:text-primary-dark transition-colors self-start hover:cursor-pointer mt-auto">
+                          <div className="text-primary font-bold text-sm flex items-center gap-1.5 group-hover/card:text-primary-dark transition-colors self-start mt-auto">
                             Know More <ArrowUpRight size={16} />
-                          </button>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </StaggerItem>
                   ))
                 ) : (

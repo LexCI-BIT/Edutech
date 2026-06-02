@@ -6,7 +6,7 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '../components/Scrol
 
 const categories = ['All', 'Tech & Data', 'Mechanics', 'Business', 'Medical', 'Design', 'Bootcamp']
 
-const courses = [
+export const courses = [
   // Tech & Data
   {
     id: 'tech-web',
@@ -392,40 +392,41 @@ export default function Courses({ onContactClick }) {
                       transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                       className="card-glow rounded-2xl overflow-hidden group"
                     >
-                      {/* Image Area */}
-                      <div className="h-48 relative overflow-hidden bg-[#1e1c2e]">
-                        <img 
-                          src={course.image} 
-                          alt={course.title} 
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 relative z-10"
-                        />
-                      </div>
+                      <Link to={`/course/${course.id}`} className="flex flex-col h-full block">
+                        {/* Image Area */}
+                        <div className="h-48 relative overflow-hidden bg-[#1e1c2e]">
+                          <img 
+                            src={course.image} 
+                            alt={course.title} 
+                            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 relative z-10"
+                          />
+                        </div>
 
-                      {/* Content */}
-                      <div className="p-5">
-                        <span className="text-xs text-primary-light uppercase tracking-wider font-medium">
-                          {course.level}
-                        </span>
-                        <h3 className="text-lg font-semibold text-text-primary mt-1">
-                          {course.title}
-                        </h3>
-                        <div className="flex items-center gap-4 mt-3 text-sm text-text-secondary">
-                          <span>{course.duration}</span>
-                          <span className="w-1 h-1 rounded-full bg-text-muted" />
-                          <span>{course.projects} Projects</span>
-                        </div>
-                        <div className="flex items-center justify-between mt-4">
-                          <span className="text-lg font-bold text-text-primary">
-                            {course.price}
+                        {/* Content */}
+                        <div className="p-5 flex flex-col flex-1">
+                          <span className="text-xs text-primary-light uppercase tracking-wider font-medium">
+                            {course.level}
                           </span>
-                          <button
-                            onClick={onContactClick}
-                            className="bg-[#1a103c] text-[#a855f7] px-5 py-1.5 rounded-lg text-xs font-bold hover:bg-[#2d1b69] transition-colors cursor-pointer"
-                          >
-                            Enroll
-                          </button>
+                          <h3 className="text-lg font-semibold text-text-primary mt-1 group-hover:text-primary-light transition-colors">
+                            {course.title}
+                          </h3>
+                          <div className="flex items-center gap-4 mt-3 text-sm text-text-secondary">
+                            <span>{course.duration}</span>
+                            <span className="w-1 h-1 rounded-full bg-text-muted" />
+                            <span>{course.projects} Projects</span>
+                          </div>
+                          <div className="flex items-center justify-between mt-auto pt-4">
+                            <span className="text-lg font-bold text-text-primary">
+                              {course.price}
+                            </span>
+                            <span
+                              className="bg-[#1a103c] text-[#a855f7] px-5 py-1.5 rounded-lg text-xs font-bold group-hover:bg-[#2d1b69] transition-colors cursor-pointer"
+                            >
+                              Learn More
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </motion.div>
                   </StaggerItem>
                 )

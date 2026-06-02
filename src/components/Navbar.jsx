@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -15,6 +16,14 @@ export default function Navbar({ onContactClick }) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { cartItems, toggleCart } = useCart()
+
+  const isCoursePage = location.pathname.startsWith('/course/');
+  
+  const currentNavLinks = isCoursePage ? [
+    { name: 'Overview', path: '#overview' },
+    { name: 'Syllabus', path: '#syllabus' }
+  ] : navLinks;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -49,17 +58,20 @@ export default function Navbar({ onContactClick }) {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const isContact = link.name === 'Contact Us';
+            {currentNavLinks.map((link) => {
+              const isActive = isCoursePage 
+                ? (location.hash === link.path || (location.hash === '' && link.path === '#overview'))
+                : (location.pathname === link.path);
+
               return (
                 <Link
-                  key={link.path}
+                  key={link.name}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
                   className={`nav-link text-sm font-medium transition-colors ${
-                    location.pathname === link.path
+                    isActive
                       ? 'text-primary-light active'
-                      : 'text-text-secondary hover:text-text-primary'
+                      : 'text-gray-300 hover:text-white'
                   }`}
                 >
                   {link.name}
@@ -68,24 +80,49 @@ export default function Navbar({ onContactClick }) {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Right Actions: SignUp + Cart */}
+          <div className="hidden lg:flex items-center gap-4">
             <Link
               to="/signin"
               className="btn-primary px-5 py-2.5 rounded-lg text-sm font-semibold text-white inline-block"
             >
               <span>SignUp/SignIn</span>
             </Link>
+            
+            <button 
+              onClick={toggleCart}
+              className="relative p-2 text-white hover:text-[#a855f7] transition-colors cursor-pointer group"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#a855f7] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="lg:hidden flex items-center gap-4">
+            <button 
+              onClick={toggleCart}
+              className="relative p-2 text-white hover:text-[#a855f7] transition-colors cursor-pointer"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#a855f7] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
