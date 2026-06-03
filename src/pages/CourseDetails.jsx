@@ -14,12 +14,11 @@ export default function CourseDetails() {
   const location = useLocation()
   const [course, setCourse] = useState(null)
   const [openModule, setOpenModule] = useState(null)
-  const [selectedPlan, setSelectedPlan] = useState({ name: 'Live Edge', price: 8999, desc: 'Get real time assistance' })
   const { addToCart, cartItems } = useCart()
 
   const activeTab = location.hash === '#syllabus' ? 'syllabus' : 'overview';
 
-  const isAdded = course ? cartItems.some(item => item.id === `${course.id}-${selectedPlan.name.replace(/\s+/g, '-').toLowerCase()}`) : false;
+  const isAdded = course ? cartItems.some(item => item.id === course.id) : false;
 
   const courseSyllabus = course && syllabusData[course.id] && syllabusData[course.id].length > 0
     ? syllabusData[course.id]
@@ -27,13 +26,7 @@ export default function CourseDetails() {
 
   const handleAddToCart = () => {
     if (course) {
-      // Create a unique ID for the cart item combining course id and plan
-      const cartItem = {
-        ...course,
-        id: `${course.id}-${selectedPlan.name.replace(/\s+/g, '-').toLowerCase()}`,
-        selectedPlan: selectedPlan,
-      };
-      addToCart(cartItem);
+      addToCart(course);
     }
   };
 
@@ -131,39 +124,23 @@ export default function CourseDetails() {
                 Master the art of building modern, responsive, and high-performance websites from scratch.
               </p>
               
-              {/* Pricing Tiers */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                {[
-                  { name: 'Solo Sprint', price: 5999, desc: 'Learn at your own pace' },
-                  { name: 'Live Edge', price: 8999, desc: 'Get real time assistance', recommended: true },
-                  { name: 'Career Edge', price: 14999, desc: 'Get Job ready' },
-                ].map((plan) => (
-                  <div 
-                    key={plan.name}
-                    onClick={() => setSelectedPlan(plan)}
-                    className={`relative p-4 rounded-xl border-2 transition-all cursor-pointer flex flex-col ${selectedPlan?.name === plan.name ? 'border-[#a855f7] bg-[#a855f7]/10' : 'border-[#2d1b69]/40 bg-[#130f26]/60 hover:border-[#a855f7]/50'}`}
-                  >
-                    {plan.recommended && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 to-[#a855f7] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-lg">
-                        RECOMMENDED
-                      </div>
-                    )}
-                    <h4 className="text-white font-bold text-sm mb-1">{plan.name}</h4>
-                    <p className="text-gray-400 text-[11px] mb-3 leading-tight flex-1">{plan.desc}</p>
-                    <div className="text-xl font-bold text-white mt-auto">
-                      <span className="text-[#a855f7]">₹</span>{plan.price.toLocaleString('en-IN')}
-                    </div>
-                  </div>
-                ))}
+              <div className="text-2xl sm:text-3xl font-bold text-[#b5a642] mb-8 mt-2">
+                ₹8,999.00
+              </div>
+
+              <div className="space-y-3 mb-8 ml-2">
+                <p className="text-sm text-gray-200">All benefits of <span className="font-bold text-white">Self Paced</span></p>
+                <p className="text-sm text-gray-200">Live Sessions</p>
+                <p className="text-sm text-gray-200">Doubt Clearing Sessions</p>
               </div>
 
               {isAdded ? (
-                <button className="w-full bg-[#3b0764] text-white font-bold py-4 rounded-xl flex items-center justify-between px-6 transition-colors border border-[#a855f7]/30 cursor-pointer">
-                    Added to cart <Check className="w-5 h-5" />
+                <button className="w-64 bg-[#3b0764] text-white font-bold py-3.5 rounded flex items-center justify-center gap-2 transition-colors border border-[#a855f7]/30 cursor-pointer text-sm">
+                    Added to cart <Check className="w-4 h-4" />
                 </button>
               ) : (
-                <button onClick={handleAddToCart} className="w-full bg-[#5b21b6] hover:bg-[#6d28d9] text-white font-bold py-4 rounded-xl flex items-center justify-between px-6 transition-colors shadow-[0_0_20px_rgba(168,85,247,0.3)] cursor-pointer">
-                    Add to cart <ArrowRight className="w-5 h-5" />
+                <button onClick={handleAddToCart} className="w-64 bg-[#6b4c9a] hover:bg-[#5b3b8a] text-white font-bold py-3.5 rounded transition-colors cursor-pointer text-sm">
+                    Add to cart
                 </button>
               )}
 

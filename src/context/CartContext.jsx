@@ -23,10 +23,7 @@ export function CartProvider({ children }) {
   const closeCart = () => setIsCartOpen(false);
 
   const cartTotal = cartItems.reduce((total, item) => {
-    if (item.selectedPlan && typeof item.selectedPlan.price === 'number') {
-      return total + item.selectedPlan.price;
-    }
-    const price = parseInt(item.price.replace(/[^\d]/g, ''), 10) || 14000;
+    const price = parseInt(item.price.replace(/[^\d]/g, ''), 10) || 8999;
     return total + price;
   }, 0);
 

@@ -64,16 +64,9 @@ export default function CartSidebar() {
                       className="w-20 h-20 object-cover rounded-lg bg-black shrink-0"
                     />
                     <div className="flex-1">
-                      <h4 className="text-white font-semibold text-sm mb-1 pr-6">
-                        {item.title}
-                        {item.selectedPlan && <span className="block text-xs text-[#a855f7] mt-0.5">{item.selectedPlan.name}</span>}
-                      </h4>
-                      <p className="text-gray-400 text-xs mb-2">
-                        1 × {item.selectedPlan ? `₹${item.selectedPlan.price.toLocaleString('en-IN')}` : item.price}
-                      </p>
-                      <p className="text-white font-bold text-sm">
-                        {item.selectedPlan ? `₹${item.selectedPlan.price.toLocaleString('en-IN')}` : item.price}
-                      </p>
+                      <h4 className="text-white font-semibold text-sm mb-1 pr-6">{item.title}</h4>
+                      <p className="text-gray-400 text-xs mb-2">1 × {item.price}</p>
+                      <p className="text-white font-bold text-sm">{item.price}</p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}

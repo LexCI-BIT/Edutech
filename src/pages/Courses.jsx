@@ -417,7 +417,7 @@ export default function Courses({ onContactClick }) {
                           </div>
                           <div className="flex items-center justify-between mt-auto pt-4">
                             <span className="text-lg font-bold text-text-primary">
-                              From ₹5,999
+                              ₹8,999
                             </span>
                             <span
                               className="bg-[#1a103c] text-[#a855f7] px-5 py-1.5 rounded-lg text-xs font-bold group-hover:bg-[#2d1b69] transition-colors cursor-pointer"
