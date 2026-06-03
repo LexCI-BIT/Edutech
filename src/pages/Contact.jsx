@@ -25,17 +25,17 @@ export default function Contact() {
     {
       icon: MapPin,
       label: 'Address',
-      value: 'xxxxxxxxxx',
+      value: 'kharkhana',
     },
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@edutech.in',
+      value: 'apexschool.io.official@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91 1234567890',
+      value: '+91 70321 72953',
     },
     {
       icon: Clock,

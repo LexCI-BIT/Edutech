@@ -85,17 +85,17 @@ export default function Footer() {
         <ScrollReveal variant="fadeUp" delay={0.3}>
           <div className="mt-12 pt-8 border-t border-border-purple flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-6 text-sm text-text-secondary">
-              <a href="mailto:hello@edutech.in" className="flex items-center gap-2 hover:text-primary-light transition-colors">
+              <a href="mailto:apexschool.io.official@gmail.com" className="flex items-center gap-2 hover:text-primary-light transition-colors">
                 <Mail size={14} />
-                hello@edutech.in
+                apexschool.io.official@gmail.com
               </a>
-              <a href="tel:+911234567890" className="flex items-center gap-2 hover:text-primary-light transition-colors">
+              <a href="tel:+917032172953" className="flex items-center gap-2 hover:text-primary-light transition-colors">
                 <Phone size={14} />
-                +91 1234567890
+                +91 70321 72953
               </a>
               <span className="flex items-center gap-2">
                 <MapPin size={14} />
-                xxxxxxxxxx
+                kharkhana
               </span>
             </div>
           </div>
