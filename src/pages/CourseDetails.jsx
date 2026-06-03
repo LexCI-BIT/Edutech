@@ -14,11 +14,12 @@ export default function CourseDetails() {
   const location = useLocation()
   const [course, setCourse] = useState(null)
   const [openModule, setOpenModule] = useState(null)
+  const [selectedPlan, setSelectedPlan] = useState({ name: 'Live Edge', price: 8999, desc: 'Get real time assistance' })
   const { addToCart, cartItems } = useCart()
 
   const activeTab = location.hash === '#syllabus' ? 'syllabus' : 'overview';
 
-  const isAdded = course ? cartItems.some(item => item.id === course.id) : false;
+  const isAdded = course ? cartItems.some(item => item.id === `${course.id}-${selectedPlan.name.replace(/\s+/g, '-').toLowerCase()}`) : false;
 
   const courseSyllabus = course && syllabusData[course.id] && syllabusData[course.id].length > 0
     ? syllabusData[course.id]
@@ -26,7 +27,13 @@ export default function CourseDetails() {
 
   const handleAddToCart = () => {
     if (course) {
-      addToCart(course);
+      // Create a unique ID for the cart item combining course id and plan
+      const cartItem = {
+        ...course,
+        id: `${course.id}-${selectedPlan.name.replace(/\s+/g, '-').toLowerCase()}`,
+        selectedPlan: selectedPlan,
+      };
+      addToCart(cartItem);
     }
   };
 
@@ -124,38 +131,30 @@ export default function CourseDetails() {
                 Master the art of building modern, responsive, and high-performance websites from scratch.
               </p>
               
-              <div className="text-4xl font-bold text-white mb-8">
-                <span className="text-[#a855f7]">₹</span>14,000<span className="text-[#a855f7]">.00</span>
-              </div>
-
-              <div className="bg-[#130f26]/60 border border-[#2d1b69]/40 rounded-2xl p-6 space-y-6 mb-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#a855f7]/20 rounded-lg flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[#a855f7]" />
+              {/* Pricing Tiers */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                {[
+                  { name: 'Solo Sprint', price: 5999, desc: 'Learn at your own pace' },
+                  { name: 'Live Edge', price: 8999, desc: 'Get real time assistance', recommended: true },
+                  { name: 'Career Edge', price: 14999, desc: 'Get Job ready' },
+                ].map((plan) => (
+                  <div 
+                    key={plan.name}
+                    onClick={() => setSelectedPlan(plan)}
+                    className={`relative p-4 rounded-xl border-2 transition-all cursor-pointer flex flex-col ${selectedPlan?.name === plan.name ? 'border-[#a855f7] bg-[#a855f7]/10' : 'border-[#2d1b69]/40 bg-[#130f26]/60 hover:border-[#a855f7]/50'}`}
+                  >
+                    {plan.recommended && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 to-[#a855f7] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-lg">
+                        RECOMMENDED
+                      </div>
+                    )}
+                    <h4 className="text-white font-bold text-sm mb-1">{plan.name}</h4>
+                    <p className="text-gray-400 text-[11px] mb-3 leading-tight flex-1">{plan.desc}</p>
+                    <div className="text-xl font-bold text-white mt-auto">
+                      <span className="text-[#a855f7]">₹</span>{plan.price.toLocaleString('en-IN')}
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-gray-400 text-xs">All benefits of</p>
-                    <p className="text-white font-bold text-sm">Self Paced</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center shrink-0">
-                    <Video className="w-5 h-5 text-pink-500" />
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-sm">Live Sessions</p>
-                    <p className="text-gray-400 text-xs">Interactive live classes with industry experts</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-5 h-5 text-blue-500" />
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-sm">Doubt Clearing Sessions</p>
-                    <p className="text-gray-400 text-xs">Get your doubts resolved anytime</p>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {isAdded ? (
